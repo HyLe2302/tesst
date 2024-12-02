@@ -4,7 +4,8 @@ const bcrypt = require("bcrypt");
 const colllection = require("./config");
 const { name } = require("ejs");
 const { send } = require("process");
-
+const { config } = require("dotenv")
+config()
 const app = express();
 //convert data into json format
 app.use(express.json());
@@ -80,8 +81,7 @@ app.post("/login", async (req, res) => {
         res.send("wrong")
     }
 });
-
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, () =>{
     console.log(`Server running on port: ${port}`);
 })
